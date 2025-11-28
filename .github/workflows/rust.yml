@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Update Ubuntu Installation
+      run: sudo apt update
     - name: Install GKT4 Dependencies
       run: sudo apt install -y 	libgtk-4-dev
     - name: Build
