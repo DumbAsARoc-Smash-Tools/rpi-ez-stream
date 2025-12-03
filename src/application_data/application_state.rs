@@ -59,22 +59,20 @@ impl ApplicationData {
         self.players.get_mut(id)
     }
 
+    pub fn get_serialized_json(&self) -> anyhow::Result<String> {
+        match serde_json::to_string_pretty(self) {
+            Ok(v) => Ok(v),
+            Err(e) => { return Err(anyhow!(e)); }
+        }
+    }
+
     pub fn write_to_data_file(&self) -> Result<()> {
         let outfile = File::create(DATA_FILE_RELATIVE_PATH);
-        let mut outfile = match outfile {
-            Ok(f) => f,
-            Err(e) => { return Err(anyhow!(e)); }
-        };
+        let mut outfile = outfile?;
 
-        let self_serialized = match serde_json::to_string_pretty(self) {
-            Ok(v) => v,
-            Err(e) => { return Err(anyhow!(e)); }
-        };
+        let self_serialized = self.get_serialized_json()?;
 
-        match write!(outfile, "{}", self_serialized) {
-            Ok(_) => {},
-            Err(e) => { return Err(anyhow!(e)); }
-        };
+        write!(outfile, "{}", self_serialized)?;
 
         Ok(())
     }
