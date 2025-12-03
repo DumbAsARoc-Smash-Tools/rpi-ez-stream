@@ -4,6 +4,9 @@
   <!-- interface-name character_select_button.ui -->
   <requires lib="gtk" version="4.12"/>
   <template class="CharacterButton" parent="GtkButton">
+    <property name="child">
+      <object class="GtkImage" id="css_image"/>
+    </property>
     <signal name="clicked" handler="on_click"/>
   </template>
 </interface>

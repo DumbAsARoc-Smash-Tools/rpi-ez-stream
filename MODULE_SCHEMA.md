@@ -21,6 +21,8 @@
   | | | - module_info.json --> See below 
 ```
 
+**Note: Only PNG Images are supported for now - this may change in the future!**
+
 # `module_info.json` Specification
 
 ```json

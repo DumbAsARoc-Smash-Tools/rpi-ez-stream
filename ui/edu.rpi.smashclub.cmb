@@ -3,7 +3,7 @@
 <!-- Created with Cambalache 0.96.3 -->
 <cambalache-project version="0.96.0" target_tk="gtk-4.0">
   <css filename="main_window.css" is_global="1"/>
-  <ui template-class="CharacterButton" filename="character_select_screen/character_select_button.ui" sha256="0708e2bf0b9dcf282b929836a1a03cba75c488933f094b07ba3da912db66f365">
+  <ui template-class="CharacterButton" filename="character_select_screen/character_select_button.ui" sha256="f9203e7511eee893161194b7c9cc14d6ac55a117b1a45c765f4bd36aaf50fb7e">
     <css-provider>main_window.css</css-provider>
   </ui>
   <ui template-class="CharacterSelectScreen" filename="character_select_screen/character_select_screen.ui" sha256="00b06bfb49183ccfc9c0d42035927c3ffb847dcc4dc558c0da4888f2b927c6e3">
@@ -18,13 +18,13 @@
   <ui template-class="ModuleSelectorLayout" filename="module_dialog/layout.ui" sha256="a8f85eba0b50a4ee32999ffabc523d271192a7a5149b8b55dec7b3672b41602e">
     <css-provider>main_window.css</css-provider>
   </ui>
-  <ui template-class="ModuleSelector" filename="module_dialog/module_dialog.ui" sha256="3bea845e83c28412d7a145b1e96e7580734ecfb265b93871809507c92b6ba33d">
-    <requires>ModuleSelectorLayout</requires>
-    <css-provider>main_window.css</css-provider>
-  </ui>
   <ui template-class="MainScreen" filename="main_screen/main_screen.ui" sha256="dceb5cf6ac4f7314e70d8b2ad411768bc511d7bde4b0c6a4a8243fd7f2d1b1fe">
     <requires>PlayerNameEntry</requires>
     <requires>TournamentInfoBar</requires>
+    <css-provider>main_window.css</css-provider>
+  </ui>
+  <ui template-class="ModuleSelector" filename="module_dialog/module_dialog.ui" sha256="3bea845e83c28412d7a145b1e96e7580734ecfb265b93871809507c92b6ba33d">
+    <requires>ModuleSelectorLayout</requires>
     <css-provider>main_window.css</css-provider>
   </ui>
   <ui template-class="MainWindow" filename="main_window.ui" sha256="8e8397c31d2e982b7136e427fa5a1e9e87ae965da87232f4f4531a053c70d229">

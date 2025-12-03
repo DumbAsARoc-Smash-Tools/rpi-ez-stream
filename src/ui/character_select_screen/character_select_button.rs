@@ -10,16 +10,27 @@ glib::wrapper! {
 }
 
 impl CharacterButton {
-    pub fn new<S, I>(character_name: S, aliases: I) -> Self where
+    const IMAGE_NAME: &'static str = "css.png";
+
+    pub fn new<S, I>(module_path: std::path::PathBuf, character_name: S, aliases: I) -> Self where
         std::string::String: From<S>,
         I: IntoIterator<Item = String>
     {
         let button: Self = glib::Object::builder().build();
         
         let internal_character_name: String = character_name.into();
-        button.set_character_name_internal(internal_character_name);
+        button.set_character_name_internal(internal_character_name.clone());
         button.set_aliases(aliases.into_iter().map(|s| s.to_string()).collect::<Vec<String>>());
-        button.set_label(button.character_name_internal().as_str());
+        // button.set_label(button.character_name_internal().as_str());
+
+        let mut full_path = std::path::PathBuf::from(module_path);
+        full_path.push("characters");
+        full_path.push(internal_character_name);
+        full_path.push(Self::IMAGE_NAME);
+
+        // println!("Attempting to set path: {}", full_path.to_string_lossy());
+        
+        button.css_image().set_from_file(Some(full_path));
 
         button
     }
@@ -92,6 +103,10 @@ mod imp {
     #[template(resource = "/edu/rpi/ezstream/ui/character_select_screen/character_select_button.ui")]
     #[properties(wrapper_type = super::CharacterButton)]
     pub struct CharacterButton {
+
+        #[template_child]
+        #[property(get)]
+        css_image: TemplateChild<gtk4::Image>,
 
         #[property(get, set)]
         character_name_internal: Rc<RefCell<String>>,

@@ -22,7 +22,8 @@ pub fn create_initialize_character_select_data_action() -> ActionEntry<MainWindo
             if ModuleHandlerAPI::is_module_loaded() {
                 for character in ModuleHandlerAPI::get_module_characters().unwrap() {
                     let char_button = CharacterButton::new(
-                        character.display_name.clone(),
+                        ModuleHandlerAPI::get_module_path().unwrap(),
+                        character.path_in_folder.clone(),
                         character.aliases.clone()
                     );
                     flowbox.insert(&char_button, -1);
