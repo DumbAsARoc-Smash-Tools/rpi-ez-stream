@@ -4,6 +4,9 @@ use settings_data::export_settings_to_xml;
 
 fn main() {
 
+    slint_build::compile("ui/MainWindow.slint").unwrap();
+    // slint_build::compile("ui/CharacterSelectWindow.slint").unwrap();
+
     // glib_build_tools::compile_resources(
     //     &[ "ui" ],
     //     "ui/ui_resource.gresource.xml",
