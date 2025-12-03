@@ -1,0 +1,44 @@
+name: Build MinGW
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set Up MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            curl
+            git
+
+      - name: Set Up Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          target: x86_64-pc-windows-gnu
+          toolchain: stable
+
+      - name: Install GKT4 Dependencies
+        run: pacman -S mingw-w64-ucrt-x86_64-gtk4
+
+      - name: Build
+        run: cargo build --release --verbose
+    # - name: Run tests
+    # run: cargo test --verbose
