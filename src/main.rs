@@ -1,13 +1,12 @@
 // Disable command prompt on launch for Windows
 #![windows_subsystem = "windows"]
 
-mod application_data;
 mod get_endpoints;
 mod main_application;
 // mod ui;
 
 use env_logger::{self, Env};
-use main_application::MainApplication;
+// use main_application::MainApplication;
 
 /// Sets up the logger for output, depending
 /// on whether we are in a debug context
@@ -24,15 +23,13 @@ fn initialize_logger() {
 }
 
 #[tokio::main]
-async fn main() -> gtk4::glib::ExitCode {
+async fn main() {
     initialize_logger();
 
-    let handle = tokio::spawn(get_endpoints::run_webserver());
+    // let handle = tokio::spawn(get_endpoints::run_webserver());
 
     // let app = MainApplication::new();
     // let exitcode = app.run_application();
 
-    handle.abort();
-
-    exitcode
+    // handle.abort();
 }
