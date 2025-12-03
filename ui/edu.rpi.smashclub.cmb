@@ -3,7 +3,7 @@
 <!-- Created with Cambalache 0.96.3 -->
 <cambalache-project version="0.96.0" target_tk="gtk-4.0">
   <css filename="main_window.css" is_global="1"/>
-  <ui template-class="CharacterButton" filename="character_select_screen/character_select_button.ui" sha256="f9203e7511eee893161194b7c9cc14d6ac55a117b1a45c765f4bd36aaf50fb7e">
+  <ui template-class="CharacterButton" filename="character_select_screen/character_select_button.ui" sha256="7a4901a8f83d1f8f264c2963c40b896f973379d97d7a07fa2bd8fa86c6b0c9c0">
     <css-provider>main_window.css</css-provider>
   </ui>
   <ui template-class="CharacterSelectScreen" filename="character_select_screen/character_select_screen.ui" sha256="00b06bfb49183ccfc9c0d42035927c3ffb847dcc4dc558c0da4888f2b927c6e3">

@@ -31,6 +31,7 @@ impl CharacterButton {
         // println!("Attempting to set path: {}", full_path.to_string_lossy());
         
         button.css_image().set_from_file(Some(full_path));
+        println!("Image has vertical stretching: {}", button.css_image().is_vexpand_set());
 
         button
     }
