@@ -26,11 +26,18 @@ fn initialize_logger() {
 }
 
 #[cfg(not(test))]
-fn main() -> gtk4::glib::ExitCode {
+#[tokio::main]
+async fn main() -> gtk4::glib::ExitCode {
     initialize_logger();
 
+    let handle = tokio::spawn(get_endpoints::run_webserver());
+
     let app = MainApplication::new();
-    app.run_application()
+    let exitcode = app.run_application();
+
+    handle.abort();
+
+    exitcode
 }
 
 // ---------------
