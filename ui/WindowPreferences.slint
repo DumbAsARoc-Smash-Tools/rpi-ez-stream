@@ -1,0 +1,19 @@
+export struct EZStreamColorScheme {
+    background-color: color,
+    font-color: color,
+
+    text-input-bg-color: color,
+    text-input-font-color: color,
+}
+
+export global EZStreamWindowPreferences {
+    in-out property <length> font-size: 16px;
+    in-out property <color> name;
+
+    in-out property <EZStreamColorScheme> color-scheme: {
+        background-color: #444444,
+        font-color: Colors.white,
+        text-input-bg-color: Colors.white,
+        text-input-font-color: Colors.black,
+    };
+}
