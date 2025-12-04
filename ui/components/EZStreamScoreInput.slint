@@ -1,0 +1,30 @@
+import { EZStreamTextButton } from "primitive/EZStreamButton.slint";
+import { EZStreamTextInput } from "primitive/EZStreamTextInput.slint";
+export component EZStreamScoreInput {
+    height: 20px;
+    in property <length> button_width: 20px;
+    in property <length> input_width: 60px;
+
+    HorizontalLayout {
+        spacing: 2px;
+
+        EZStreamTextButton {
+            label: "-";
+            height: root.height;
+            width: button_width;
+        }
+
+        EZStreamTextInput {
+            placeholder-text: "";
+            horizontal-alignment: center;
+            height: root.height;
+            width: input_width;
+        }
+
+        EZStreamTextButton {
+            label: "+";
+            height: root.height;
+            width: button_width;
+        }
+    }
+}

@@ -1,12 +1,15 @@
 import { LineEdit } from "std-widgets.slint";
-import { EZStreamWindowPreferences as WP } from "../WindowPreferences.slint";
+import { EZStreamWindowPreferences as WP } from "../../WindowPreferences.slint";
 
-export component PlayerTagInput {
+export component EZStreamTextInput {
     in property <string> placeholder-text: "Nada";
     in property <length> font-size: WP.font-size;
     in property <color> font-color: WP.color-scheme.text-input-font-color;
     in property <color> background: WP.color-scheme.text-input-bg-color;
+    in property <length> horizontal-margin: 2px;
+    in property <length> vertical-margin: 0px;
     in-out property <string> text;
+    in property <TextHorizontalAlignment> horizontal-alignment: TextHorizontalAlignment.left;
 
     Rectangle {
         background: background;
@@ -15,8 +18,12 @@ export component PlayerTagInput {
         height: 100%;
 
         textinp := TextInput {
+            height: parent.height - 2 * vertical-margin;
+            width: parent.width - 2 * horizontal-margin;
             text <=> root.text;
             color: font-color;
+            vertical-alignment: center;
+            horizontal-alignment <=> horizontal-alignment;
         }
 
         if(textinp.text.is-empty): Text {

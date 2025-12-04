@@ -4,16 +4,26 @@ export struct EZStreamColorScheme {
 
     text-input-bg-color: color,
     text-input-font-color: color,
+
+    button-bg-color: color,
+    button-border-radius: length,
+    button-border-width: length,
+    button-border-color: color,
+    button-text-color: color,
 }
 
 export global EZStreamWindowPreferences {
     in-out property <length> font-size: 16px;
-    in-out property <color> name;
 
     in-out property <EZStreamColorScheme> color-scheme: {
         background-color: #444444,
         font-color: Colors.white,
         text-input-bg-color: Colors.white,
         text-input-font-color: Colors.black,
+        button-bg-color: Colors.black,
+        button-text-color: Colors.white,
+        button-border-color: Colors.white,
+        button-border-width: 1px,
+        button-border-radius: 0px,
     };
 }

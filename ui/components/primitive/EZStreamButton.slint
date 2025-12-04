@@ -1,0 +1,39 @@
+import { EZStreamWindowPreferences as WP } from "../../WindowPreferences.slint";
+
+export component EZStreamButton {
+    btnbg := Rectangle {
+        background: WP.color-scheme.button-bg-color;
+        border-width: WP.color-scheme.button-border-width;
+        border-radius: WP.color-scheme.button-border-radius;
+        border-color: WP.color-scheme.button-border-color;
+
+        height: root.height;
+        width: root.width;
+
+        ta := TouchArea {
+            width: 100%;
+            height: 100%;
+        }
+
+        @children
+    }
+
+    states [
+        clicked when ta.pressed: {
+            btnbg.background: blue;
+        }
+        hovered when ta.has-hover: {
+            btnbg.background: red;
+        }
+    ]
+}
+
+export component EZStreamTextButton inherits EZStreamButton {
+    in-out property <string> label;
+
+    Text {
+        color: WP.color-scheme.button-text-color;
+        font-size: WP.font-size;
+        text <=> label;
+    }
+}

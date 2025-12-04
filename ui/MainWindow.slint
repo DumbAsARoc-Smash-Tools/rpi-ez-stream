@@ -1,5 +1,14 @@
-import { PlayerTagInput } from "components/PlayerTagInput.slint";
+import {
+    EZStreamButton,
+    EZStreamTextButton,
+} from "components/primitive/EZStreamButton.slint";
+
+import {
+    EZStreamTextInput,
+} from "components/primitive/EZStreamTextInput.slint";
+
 import { EZStreamWindowPreferences as WP } from "WindowPreferences.slint";
+import { EZStreamScoreInput } from "components/EZStreamScoreInput.slint";
 
 export component MainWindow inherits Window {
     title: "EZ-Stream";
@@ -16,14 +25,14 @@ export component MainWindow inherits Window {
 
             alignment: LayoutAlignment.space-evenly;
 
-            PlayerTagInput {
+            EZStreamTextInput {
                 placeholder-text: "Player 1 Tag";
                 font-size: WP.font-size;
                 width: 200px;
                 height: 20px;
             }
 
-            PlayerTagInput {
+            EZStreamTextInput {
                 placeholder-text: "Player 2 Tag";
                 font-size: WP.font-size;
                 width: 200px;
@@ -34,12 +43,7 @@ export component MainWindow inherits Window {
         HorizontalLayout {
             alignment: center;
 
-            PlayerTagInput {
-                placeholder-text: "Test";
-                font-size: WP.font-size;
-                width: 200px;
-                height: 20px;
-            }
+            EZStreamScoreInput { }
         }
     }
 }
