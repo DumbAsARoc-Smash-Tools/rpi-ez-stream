@@ -11,6 +11,8 @@ export component EZStreamTextInput {
     in-out property <string> text;
     in property <TextHorizontalAlignment> horizontal-alignment: TextHorizontalAlignment.left;
 
+    callback text-changed(new-text: string);
+
     Rectangle {
         background: background;
 
@@ -27,6 +29,10 @@ export component EZStreamTextInput {
             font-family: WP.font-name;
             font-weight: WP.font-weight;
             font-size: font-size;
+
+            edited => {
+                text-changed(self.text);
+            }
         }
 
         if(textinp.text.is-empty): Text {
