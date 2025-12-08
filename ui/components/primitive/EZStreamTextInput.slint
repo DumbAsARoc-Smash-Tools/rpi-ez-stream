@@ -6,6 +6,7 @@ export component EZStreamTextInput {
     in property <length> font-size: WP.font-size;
     in property <color> font-color: WP.color-scheme.text-input-font-color;
     in property <color> background: WP.color-scheme.text-input-bg-color;
+    in property <InputType> input-type: InputType.text;
     in property <length> horizontal-margin: 2px;
     in property <length> vertical-margin: 0px;
     in-out property <string> text;
@@ -29,6 +30,7 @@ export component EZStreamTextInput {
             font-family: WP.font-name;
             font-weight: WP.font-weight;
             font-size: font-size;
+            input-type: input-type;
 
             edited => {
                 text-changed(self.text);

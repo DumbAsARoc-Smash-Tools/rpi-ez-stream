@@ -4,6 +4,18 @@ export component EZStreamScoreInput {
     height: 20px;
     in property <length> button_width: 20px;
     in property <length> input_width: 60px;
+    out property <int> current-score: 0;
+    in-out property <int> max-score: 65535;
+    in-out property <int> min-score: 0;
+
+    function change-score(new-score: int) {
+        self.current-score = clamp(
+            new-score,
+            self.min-score,
+            self.max-score
+        );
+        text-input-box.text = self.current-score;
+    }
 
     HorizontalLayout {
         spacing: 2px;
@@ -12,19 +24,33 @@ export component EZStreamScoreInput {
             label: "-";
             height: root.height;
             width: button_width;
+
+            pressed => {
+                root.change-score(root.current-score - 1);
+            }
         }
 
-        EZStreamTextInput {
+        text-input-box := EZStreamTextInput {
             placeholder-text: "";
             horizontal-alignment: center;
             height: root.height;
             width: input_width;
+            input-type: InputType.number;
+            text: root.current-score;
+            text-changed(new-text) => {
+                root.change-score(
+                    new-text.to-float()
+                )
+            }
         }
 
         EZStreamTextButton {
             label: "+";
             height: root.height;
             width: button_width;
+            pressed => {
+                root.change-score(root.current-score + 1);
+            }
         }
     }
 }

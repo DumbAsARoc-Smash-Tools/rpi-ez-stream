@@ -1,6 +1,8 @@
 import { EZStreamWindowPreferences as WP } from "../../WindowPreferences.slint";
 
 export component EZStreamButton {
+    callback pressed();
+
     btnbg := Rectangle {
         background: WP.color-scheme.button-bg-color;
         border-width: WP.color-scheme.button-border-width;
@@ -13,6 +15,7 @@ export component EZStreamButton {
         ta := TouchArea {
             width: 100%;
             height: 100%;
+            clicked => {pressed();}
         }
 
         @children
