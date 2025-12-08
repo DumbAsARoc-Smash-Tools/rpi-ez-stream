@@ -8,6 +8,8 @@ export component EZStreamScoreInput {
     in-out property <int> max-score: 65535;
     in-out property <int> min-score: 0;
 
+    callback score-changed(new-score: int);
+
     function change-score(new-score: int) {
         self.current-score = clamp(
             new-score,
@@ -15,6 +17,7 @@ export component EZStreamScoreInput {
             self.max-score
         );
         text-input-box.text = self.current-score;
+        score-changed(new-score);
     }
 
     HorizontalLayout {

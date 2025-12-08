@@ -1,16 +1,12 @@
-import {
-    EZStreamButton,
-    EZStreamTextButton,
-} from "components/primitive/EZStreamButton.slint";
+import { EZStreamButton, EZStreamTextButton } from "components/primitive/EZStreamButton.slint";
 
-import {
-    EZStreamTextInput,
-} from "components/primitive/EZStreamTextInput.slint";
+import { EZStreamTextInput } from "components/primitive/EZStreamTextInput.slint";
 
 import "./res/Figtree_VariableFont_wght.ttf";
 
 import { EZStreamWindowPreferences as WP } from "WindowPreferences.slint";
 import { EZStreamScoreInput } from "components/EZStreamScoreInput.slint";
+import { CenteredGridLayout } from "components/primitive/CenteredGridLayout.slint";
 
 export component MainWindow inherits Window {
     title: "EZ-Stream";
@@ -19,17 +15,21 @@ export component MainWindow inherits Window {
 
     callback player-1-tag-changed(new-text: string);
     callback player-2-tag-changed(new-text: string);
+    callback player-1-score-changed(new-score: int);
+    callback player-2-score-changed(new-score: int);
 
     background: WP.color-scheme.background-color;
 
-    VerticalLayout {
-        spacing: 10px;
-        alignment: center;
+    CenteredGridLayout {
+        vertical-spacing: 3px;
+
+        // ---- TOP ROW ---- //
 
         HorizontalLayout {
-
-            alignment: LayoutAlignment.space-evenly;
-
+            alignment: center;
+            row: 2;
+            col: 0;
+        
             EZStreamTextInput {
                 placeholder-text: "Player 1 Tag";
                 font-size: WP.font-size;
@@ -37,6 +37,12 @@ export component MainWindow inherits Window {
                 height: 20px;
                 text-changed(new-text) => player-1-tag-changed(new-text);
             }
+        }
+
+        HorizontalLayout {
+            alignment: center;
+            row: 2;
+            col: 2;
 
             EZStreamTextInput {
                 placeholder-text: "Player 2 Tag";
@@ -47,10 +53,41 @@ export component MainWindow inherits Window {
             }
         }
 
+
+        // ---- SECOND ROW ---- //
+
         HorizontalLayout {
+            row: 3;
+            col: 0;
+            alignment: center;
+        
+            EZStreamScoreInput {
+                score-changed(new-score) => { player-1-score-changed(new-score); }
+            }
+        }
+
+        HorizontalLayout {
+            row: 3;
+            col: 2;
             alignment: center;
 
-            EZStreamScoreInput { }
+            EZStreamScoreInput {
+                score-changed(new-score) => { player-2-score-changed(new-score); }
+            }
+        }
+
+        // ---- BOTTOM ROW ---- //
+
+        HorizontalLayout {
+            row: 9;
+            col: 1;
+            alignment: center;
+
+            EZStreamTextButton {
+                width: 150px;
+                height: 50px;
+                label: "UPDATE";
+            }
         }
     }
 }

@@ -1,0 +1,20 @@
+export component CenteredGridLayout {
+    in property <length> horizontal-spacing: 0px;
+    in property <length> vertical-spacing: 0px;
+
+    VerticalLayout {
+        alignment: center;
+
+        HorizontalLayout {
+            alignment: center;
+
+            GridLayout {
+
+                spacing-horizontal: horizontal-spacing;
+                spacing-vertical: vertical-spacing;
+
+                @children
+            }
+        }
+    }
+}
