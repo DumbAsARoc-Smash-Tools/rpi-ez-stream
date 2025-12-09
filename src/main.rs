@@ -1,5 +1,10 @@
 slint::include_modules!();
 
+fn open_css_window(player_id: PlayerType) {
+    let css = EZStreamCharacterSelectScreen::new().unwrap();
+    css.show().unwrap();
+}
+
 fn main() -> anyhow::Result<()> {
     let app = MainWindow::new()?;
 
@@ -11,5 +16,15 @@ fn main() -> anyhow::Result<()> {
         println!("Player 2 Tag changed: {new_tag}");
     });
 
-    Ok(app.run()?)
+    app.on_player_1_css_button_clicked(|| {
+        open_css_window(PlayerType::Player1);
+    });
+
+    app.on_player_2_css_button_clicked(|| {
+        open_css_window(PlayerType::Player2);
+    });
+
+    app.show()?;
+
+    Ok(slint::run_event_loop()?)
 }

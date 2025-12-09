@@ -1,12 +1,23 @@
+// PRIMITIVES
+import { CenteredGridLayout } from "components/primitive/CenteredGridLayout.slint";
 import { EZStreamButton, EZStreamTextButton } from "components/primitive/EZStreamButton.slint";
-
 import { EZStreamTextInput } from "components/primitive/EZStreamTextInput.slint";
 
+// WIDGETS
+import { EZStreamScoreInput } from "components/EZStreamScoreInput.slint";
+
+// FONT
 import "./res/Figtree_VariableFont_wght.ttf";
 
+// ENUMS/STRUCTS
+import { CharacterData } from "data/CharacterData.slint";
+import { PlayerType } from "data/PlayerEnum.slint";
+
+// GLOBALS
 import { EZStreamWindowPreferences as WP } from "WindowPreferences.slint";
-import { EZStreamScoreInput } from "components/EZStreamScoreInput.slint";
-import { CenteredGridLayout } from "components/primitive/CenteredGridLayout.slint";
+
+// SEPARATE WINDOWS
+import { EZStreamCharacterSelectScreen } from "css_screen/CharacterSelectScreen.slint";
 
 export component MainWindow inherits Window {
     title: "EZ-Stream";
@@ -17,6 +28,9 @@ export component MainWindow inherits Window {
     callback player-2-tag-changed(new-text: string);
     callback player-1-score-changed(new-score: int);
     callback player-2-score-changed(new-score: int);
+
+    callback player-1-css-button-clicked();
+    callback player-2-css-button-clicked();
 
     background: WP.color-scheme.background-color;
 
@@ -76,6 +90,32 @@ export component MainWindow inherits Window {
             }
         }
 
+        HorizontalLayout {
+            row: 4;
+            col: 0;
+            alignment: center;
+
+            EZStreamTextButton {
+                label: "Player 1 Character Select";
+                pressed => {
+                    player-1-css-button-clicked();
+                }
+            }
+        }
+
+        HorizontalLayout {
+            row: 4;
+            col: 2;
+            alignment: center;
+
+            EZStreamTextButton {
+                label: "Player 2 Character Select";
+                pressed => {
+                    player-2-css-button-clicked();
+                }
+            }
+        }
+
         // ---- BOTTOM ROW ---- //
 
         HorizontalLayout {
@@ -90,4 +130,12 @@ export component MainWindow inherits Window {
             }
         }
     }
+}
+
+export {
+    PlayerType,
+    CharacterData,
+    WP as EZStreamWindowPreferences,
+
+    EZStreamCharacterSelectScreen,
 }

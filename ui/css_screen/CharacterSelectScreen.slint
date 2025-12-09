@@ -1,0 +1,30 @@
+import { PlayerType } from "../data/PlayerEnum.slint";
+import { CharacterData } from "../data/CharacterData.slint";
+
+export component EZStreamCharacterSelectScreen inherits Window {
+    title: "EZStream Character Selection Screen";
+
+    in property <PlayerType> player-to-decide-for: player-1;
+    in property <int> number-of-columns: 13;
+    in property <length> image-display-height: 46px;
+    in property <length> image-display-width: 80px;
+    in property <[CharacterData]> character-data;
+
+    pure callback get-image-from-modpath(path-in-folder: string) -> image;
+
+    VerticalLayout {
+        alignment: center;
+
+        for index in mod(character-data.length, root.number-of-columns): HorizontalLayout {
+            alignment: center;
+            spacing: 2px;
+
+            for seq in clamp(character-data.length - index * root.number-of-columns, 0, root.number-of-columns): Image {
+                source: get-image-from-modpath(character-data[index * root.number-of-columns + seq].path-in-folder);
+                // source: @image-url("/home/roc/Projects/Rust/rpi-ez-stream/res/modules/ez-stream-smash-ultimate-stock-icon-module/characters/Bayonetta/css.png");
+                height: image-display-height;
+                width: image-display-width;
+            }
+        }
+    }
+}
