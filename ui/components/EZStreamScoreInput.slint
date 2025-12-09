@@ -17,7 +17,7 @@ export component EZStreamScoreInput {
             self.max-score
         );
         text-input-box.text = self.current-score;
-        score-changed(new-score);
+        score-changed(self.current-score);
     }
 
     HorizontalLayout {

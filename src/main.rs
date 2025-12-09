@@ -16,6 +16,14 @@ fn main() -> anyhow::Result<()> {
         println!("Player 2 Tag changed: {new_tag}");
     });
 
+    app.on_player_1_score_changed(|new_score| {
+        println!("Player 1 Score changed: {new_score}");
+    });
+
+    app.on_player_2_score_changed(|new_score| {
+        println!("Player 2 Score changed: {new_score}");
+    });
+
     app.on_player_1_css_button_clicked(|| {
         open_css_window(PlayerType::Player1);
     });
