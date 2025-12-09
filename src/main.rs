@@ -2,6 +2,7 @@ slint::include_modules!();
 
 fn open_css_window(player_id: PlayerType) {
     let css = EZStreamCharacterSelectScreen::new().unwrap();
+    css.set_player_to_decide_for(player_id);
     css.show().unwrap();
 }
 
