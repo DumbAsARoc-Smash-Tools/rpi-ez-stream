@@ -1,4 +1,8 @@
-slint::include_modules!();
+mod slint_import;
+mod css_module;
+mod settings;
+
+use slint_import::*;
 
 fn open_css_window(player_id: PlayerType) {
     let css = EZStreamCharacterSelectScreen::new().unwrap();
