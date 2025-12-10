@@ -3,6 +3,9 @@ mod structs;
 
 use structs::*;
 use std::sync::{Arc, Mutex};
+use log::*;
+
+const MODAPI_LOG_TARGET: &'static str = "EZStreamModuleAPI";
 
 lazy_static::lazy_static! {
     static ref LOADED_MODULE: Arc<Mutex<Option<ModuleHandler>>> = Arc::new(
@@ -17,12 +20,16 @@ impl ModuleAPI {
     /// Checks if there is a module currently loaded, returns
     /// true if there is
     pub fn is_module_loaded() -> bool {
+        trace!(target: MODAPI_LOG_TARGET, "Called is_module_loaded()");
         let loaded_mod = LOADED_MODULE.lock().unwrap();
+        trace!(target: MODAPI_LOG_TARGET, "module_loaded: {}", loaded_mod.is_some());
         loaded_mod.is_some()
     }
 
     pub fn load_null_module() {
+        trace!(target: MODAPI_LOG_TARGET, "Called load_null_module()");
         let mut loaded_mod = LOADED_MODULE.lock().unwrap();
+        trace!(target: MODAPI_LOG_TARGET, "Setting module to None...");
         *loaded_mod = None;
     }
 
@@ -33,6 +40,7 @@ impl ModuleAPI {
     /// 
     /// Returns an error if something went wrong during module load
     pub fn load_module<P>(path: P) -> anyhow::Result<()> where P: AsRef<std::path::Path> {
+        trace!(target: MODAPI_LOG_TARGET, "Called load_module(\"{}\")", path.as_ref().display());
         let module = ModuleHandler::new(path)?;
         let mut loaded_mod = LOADED_MODULE.lock().unwrap();
         *loaded_mod = Some(module);
@@ -62,20 +70,34 @@ impl ModuleAPI {
     /// Returns the number of characters in the currently loaded
     /// module. If there is no loaded module, returns `None`.
     pub fn get_number_of_characters() -> Option<usize> {
+        trace!(target: MODAPI_LOG_TARGET, "Called get_number_of_characters()");
         let loaded_mod = LOADED_MODULE.lock().unwrap();
         match &*loaded_mod {
-            Some(m) => Some(m.characters.len()),
-            None => None
+            Some(m) => {
+                trace!(target: MODAPI_LOG_TARGET, "Number of characters: {}", m.characters.len());
+                Some(m.characters.len())
+            },
+            None => {
+                trace!(target: MODAPI_LOG_TARGET, "No module loaded!");
+                None
+            }
         }
     }
 
     /// Returns the currently loaded module's name, if there is
     /// a module loaded. If not, returns `None`.
     pub fn get_loaded_module_name() -> Option<String> {
+        trace!(target: MODAPI_LOG_TARGET, "Called get_loaded_module_name()");
         let loaded_mod = LOADED_MODULE.lock().unwrap();
         match &(*loaded_mod) {
-            Some(m) => Some(m.current_module_name.clone()),
-            None => None
+            Some(m) => {
+                trace!(target: MODAPI_LOG_TARGET, "Loaded module name: {}", m.current_module_name.clone());
+                Some(m.current_module_name.clone())
+            },
+            None => {
+                trace!(target: MODAPI_LOG_TARGET, "No module loaded!");
+                None
+            }
         }
     }
 
@@ -87,9 +109,4 @@ impl ModuleAPI {
     // pub fn get_character_from_module() {
     //     todo!()
     // }
-
-    /*
-        FURTHER API:
-            - GET SPECIFIC CHARACTER
-    */
 }

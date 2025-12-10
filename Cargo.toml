@@ -14,12 +14,12 @@ slint-build = "1.13.1"
 anyhow = "1.0.95"
 env_logger = "0.11.6"
 ez-stream-module = { path = "crates/ez-stream-module" }
-lazy_static = "1.5.0"
+# lazy_static = "1.5.0"
 log = "0.4.25"
-serde = { version = "1.0.217", features = ["derive"] }
-serde-saphyr = "0.0.10"
-serde_json = "1.0.138"
-settings_data = { path = "./settings_data/" }
+# serde = { version = "1.0.217", features = ["derive"] }
+# serde-saphyr = "0.0.10"
+# serde_json = "1.0.138"
+# settings_data = { path = "./settings_data/" }
 slint = "1.13.1"
-tokio = { version = "1", features = ["full"] }
-warp = { version = "0.4.2", features = ["server"] }
+# tokio = { version = "1", features = ["full"] }
+# warp = { version = "0.4.2", features = ["server"] }
