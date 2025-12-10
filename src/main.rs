@@ -1,5 +1,4 @@
 mod slint_import;
-mod css_module;
 mod settings;
 
 use slint_import::*;

@@ -13,6 +13,7 @@ slint-build = "1.13.1"
 [dependencies]
 anyhow = "1.0.95"
 env_logger = "0.11.6"
+ez-stream-module = { path = "crates/ez-stream-module" }
 lazy_static = "1.5.0"
 log = "0.4.25"
 serde = { version = "1.0.217", features = ["derive"] }

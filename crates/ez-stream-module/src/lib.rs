@@ -21,6 +21,11 @@ impl ModuleAPI {
         loaded_mod.is_some()
     }
 
+    pub fn load_null_module() {
+        let mut loaded_mod = LOADED_MODULE.lock().unwrap();
+        *loaded_mod = None;
+    }
+
     /// Loads a module into memory, replacing whatever module
     /// may have been there before. `path` is the path to the
     /// module's base folder, in which there should be a
@@ -74,9 +79,17 @@ impl ModuleAPI {
         }
     }
 
+    // @TODO What should the user query this with to get
+    // a character? The display name? Some ID?
+    //
+    // /// Returns character data from the loaded module
+    // /// corresponding to {insert parameters here}. 
+    // pub fn get_character_from_module() {
+    //     todo!()
+    // }
+
     /*
         FURTHER API:
             - GET SPECIFIC CHARACTER
-            - UNLOAD MODULE/LOAD NULL MODULE
     */
 }
