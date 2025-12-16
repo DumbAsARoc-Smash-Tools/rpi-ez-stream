@@ -6,6 +6,8 @@ export struct EZStreamColorScheme {
     text-input-font-color: color,
 
     button-bg-color: color,
+    button-bg-hover-color: color,
+    button-bg-clicked-color: color,
     button-border-radius: length,
     button-border-width: length,
     button-border-color: color,
@@ -18,13 +20,15 @@ export global EZStreamWindowPreferences {
     in-out property <int> font-weight: 500;
 
     in-out property <EZStreamColorScheme> color-scheme: {
-        background-color: #444444,
+        background-color: hsv(0, 0%, 15%),
         font-color: Colors.white,
         text-input-bg-color: Colors.white,
         text-input-font-color: Colors.black,
-        button-bg-color: Colors.black,
+        button-bg-color: hsv(0, 0%, 20%),
+        button-bg-hover-color: hsv(0, 0%, 20%).brighter(0.1),
+        button-bg-clicked-color: hsv(0, 0%, 20%).darker(0.2),
         button-text-color: Colors.white,
-        button-border-color: Colors.white,
+        button-border-color: hsv(0, 0%, 60%),
         button-border-width: 1px,
         button-border-radius: 0px,
     };

@@ -23,10 +23,10 @@ export component EZStreamButton {
 
     states [
         clicked when ta.pressed: {
-            btnbg.background: blue;
+            btnbg.background: WP.color-scheme.button-bg-clicked-color;
         }
         hovered when ta.has-hover: {
-            btnbg.background: red;
+            btnbg.background: WP.color-scheme.button-bg-hover-color;
         }
     ]
 }
